@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Spline_Sans_Mono, Sofia_Sans_Condensed } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navbar/navbar";
 
 
 
@@ -16,7 +17,7 @@ const sofiaCondensed = Sofia_Sans_Condensed({
 
 const splineSans = Spline_Sans_Mono({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-spline",
 });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased ${sofiaCondensed.variable} ${splineSans.variable}`} >
+        <Navbar />
         {children}
       </body>
     </html>
