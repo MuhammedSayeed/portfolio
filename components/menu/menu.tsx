@@ -17,12 +17,13 @@ const Menu = () => {
     useGSAP(() => {
         // initial state
         gsap.set(container.current, { yPercent: 100, autoAlpha: 0 });
-        gsap.set("#menu-logo", { opacity: 0 });
-        gsap.set("#close-button", { opacity: 0 });
-        gsap.set("#city-time", { opacity: 0 });
-        gsap.set(".menu-link-item", { yPercent: 100 });
-        gsap.set(".social-link", { yPercent: 100 });
-        gsap.set(".personal-email", { yPercent: 100 });
+        gsap.set(container.current, { willChange: "transform" });
+        gsap.set("#menu-logo", { opacity: 0, willChange: "opacity" });
+        gsap.set("#close-button", { opacity: 0, willChange: "opacity" });
+        gsap.set("#city-time", { opacity: 0, willChange: "opacity" });
+        gsap.set(".menu-link-item", { yPercent: 100, willChange: "transform" });
+        gsap.set(".social-link", { yPercent: 100, willChange: "transform" });
+        gsap.set(".personal-email", { yPercent: 100, willChange: "transform" });
         // timeline 
         tl.current = gsap.timeline({ paused: true });
         // open menu
@@ -31,6 +32,7 @@ const Menu = () => {
             autoAlpha: 1,
             duration: 1,
             ease: "power2.inOut",
+            force3D: true,
         });
         // show logo
         tl.current.to("#menu-logo", {

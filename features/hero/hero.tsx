@@ -60,7 +60,6 @@ const Hero = () => {
             }, "<0.4");
 
             // start counting
-            // Use local object to avoid polluting global constant and ensure fresh start
             const counter = { value: INTIAL_YEAR.value };
             const dobEl = document.querySelector("#date-of-birth");
             let lastValue = 0;
