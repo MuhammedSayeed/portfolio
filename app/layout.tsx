@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Spline_Sans_Mono, Sofia_Sans_Condensed } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/navbar";
+import Menu from "@/components/menu/menu";
 
 
 
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`antialiased ${sofiaCondensed.variable} ${splineSans.variable}`} >
         <Navbar />
+        <Menu />
         {children}
       </body>
     </html>
