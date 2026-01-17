@@ -1,9 +1,8 @@
+import { STACKS } from "@/features/constants";
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap";
 
 const DeveloperStacks = () => {
-
-
     useGSAP(() => {
         // initial state
         gsap.set("#hero-image-container", { backgroundColor: "transparent" });
@@ -35,27 +34,17 @@ const DeveloperStacks = () => {
         }, "<0.5");
 
     })
-
-
-
+    const RENDER_STACKS = STACKS.map((stack, index) => (
+        <div key={index} className="overflow-hidden">
+            <span className="block developer-stack">
+                {stack}
+            </span>
+        </div>
+    ))
 
     return (
         <div className="w-full h-full flex flex-col justify-end font-bold text-3xl mt-32 lg:mt-0 text-center lg:text-left">
-            <div className="overflow-hidden">
-                <span className="block developer-stack">
-                    /FRONT END DEVELOPER
-                </span>
-            </div>
-            <div className="overflow-hidden">
-                <span className="block developer-stack">
-                    /BACK END DEVELOPER
-                </span>
-            </div>
-            <div className="overflow-hidden">
-                <span className="block developer-stack">
-                    /CREATIVE DEVELOPER
-                </span>
-            </div>
+            {RENDER_STACKS}
         </div>
     )
 }

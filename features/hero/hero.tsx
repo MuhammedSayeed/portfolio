@@ -16,42 +16,42 @@ const Hero = () => {
         });
         // initial state
         gsap.set("#hero-container", { autoAlpha: 0 });
-        gsap.set(titleSplit.chars, { yPercent: -100, willChange: "transform" });
+        gsap.set(titleSplit.chars, { yPercent: -200, willChange: "transform" });
         gsap.set("#date-of-birth", { opacity: 0, y: -20, rotationX: 90, transformPerspective: 500, willChange: "transform" });
         gsap.set("#country", { opacity: 0 });
         // timeline
         const tl = gsap.timeline({
-            delay: .3
+            delay: .2
         });
         // show hero container
         tl.to("#hero-container", {
             autoAlpha: 1,
-            duration: .5,
+            duration: .4,
             ease: "power3.out"
         });
         // show title
         tl.to(titleSplit.chars, {
             yPercent: 0,
             stagger: {
-                each: .03,
+                each: .02,
                 from: "center",
 
             },
-            duration: .4,
+            duration: .3,
             ease: "power3.out",
-        }, "<0.5");
+        }, "<0.4");
         // animate date of birth
         tl.to("#date-of-birth", {
             opacity: 1,
             y: 0,
             rotationX: 0,
-            duration: 1.2,
+            duration: 1,
             ease: "back.out(1.7)"
-        }, "<0.5");
+        }, "<0.4");
         // start counting
         gsap.to(INTIAL_YEAR, {
             value: 2002,
-            duration: 4,
+            duration: 3,
             ease: "power2.out",
             onUpdate: () => {
                 const el = document.querySelector("#date-of-birth");
@@ -62,9 +62,9 @@ const Hero = () => {
         // show country
         tl.to("#country", {
             opacity: 1,
-            duration: 0.5,
+            duration: 0.4,
             ease: "power3.out"
-        }, "-=1.2");
+        }, "-=1");
 
     })
 

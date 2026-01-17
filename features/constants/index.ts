@@ -1,0 +1,17 @@
+const STACKS = [
+    "/FRONT END DEVELOPER",
+    "/BACK END DEVELOPER",
+    "/CREATIVE DEVELOPER"
+];
+const DATE_OF_BIRTH = "2002";
+const HERO_TITLE = ["SOFTWARE", "ENGINEER"];
+const COUNTRY = "BASED IN EGYPT";
+
+
+
+export {
+    STACKS,
+    DATE_OF_BIRTH,
+    HERO_TITLE,
+    COUNTRY
+}
