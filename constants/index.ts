@@ -18,8 +18,10 @@ const navItems = [
 ]
 
 const PERSONAL_EMAIL = "mhmdsayed90031@gmail.com";
+const INTIAL_YEAR = { value: 1967 };
 
 export {
     navItems,
-    PERSONAL_EMAIL
+    PERSONAL_EMAIL,
+    INTIAL_YEAR
 }
