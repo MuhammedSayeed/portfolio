@@ -20,9 +20,9 @@ const Menu = () => {
         gsap.set("#menu-logo", { opacity: 0 });
         gsap.set("#close-button", { opacity: 0 });
         gsap.set("#city-time", { opacity: 0 });
-        gsap.set(".menu-link-item", { yPercent: 100, willChange: "transform" });
-        gsap.set(".social-link", { yPercent: 100, willChange: "transform" });
-        gsap.set(".personal-email", { yPercent: 100, willChange: "transform" });
+        gsap.set(".menu-link-item", { yPercent: 100 });
+        gsap.set(".social-link", { yPercent: 100 });
+        gsap.set(".personal-email", { yPercent: 100 });
         // timeline 
         tl.current = gsap.timeline({ paused: true });
         // open menu
@@ -82,7 +82,7 @@ const Menu = () => {
 
 
     return (
-        <div ref={container} className="bg-primary w-full h-full fixed inset-0 z-51 py-9 px-6 md:px-16 text-secondary grid grid-rows-[auto_1fr] invisible will-change-transform">
+        <div ref={container} className="bg-primary w-full h-full fixed inset-0 z-51 py-9 px-6 md:px-16 text-secondary grid grid-rows-[auto_1fr] invisible">
             <div>
                 <div className="flex justify-between items-start">
                     <div id="menu-logo" className="w-fit h-fit">

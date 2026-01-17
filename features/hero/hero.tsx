@@ -11,58 +11,71 @@ import { SplitText } from "gsap/all"
 
 const Hero = () => {
     useGSAP(() => {
-        const titleSplit = SplitText.create("#hero-title", {
-            type: "chars",
-        });
-        // initial state
-        gsap.set("#hero-container", { autoAlpha: 0 });
-        gsap.set(titleSplit.chars, { yPercent: -200, willChange: "transform" });
-        gsap.set("#date-of-birth", { opacity: 0, y: -20, rotationX: 90, transformPerspective: 500, willChange: "transform" });
-        gsap.set("#country", { opacity: 0 });
-        // timeline
-        const tl = gsap.timeline();
-        // show hero container
-        tl.to("#hero-container", {
-            autoAlpha: 1,
-            duration: .4,
-            ease: "power3.out"
-        });
-        // show title
-        tl.to(titleSplit.chars, {
-            yPercent: 0,
-            stagger: {
-                each: .02,
-                from: "center",
-
-            },
-            duration: .3,
-            ease: "power3.out",
-        }, "<0.4");
-        // animate date of birth
-        tl.to("#date-of-birth", {
-            opacity: 1,
-            y: 0,
-            rotationX: 0,
-            duration: 1,
-            ease: "back.out(1.7)"
-        }, "<0.4");
-        // start counting
-        gsap.to(INTIAL_YEAR, {
-            value: 2002,
-            duration: 3,
-            ease: "power2.out",
-            onUpdate: () => {
-                const el = document.querySelector("#date-of-birth");
-                if (!el) return;
-                el.textContent = Math.round(INTIAL_YEAR.value).toString()
+        const mm = gsap.matchMedia();
+        mm.add({ isDesktop: "(min-width: 1024px)", isMobile: "(max-width: 1023px)" }, (context) => {
+            const { isDesktop } = context.conditions as { isDesktop: boolean };
+            // initial state
+            gsap.set("#hero-container", { autoAlpha: 0 });
+            gsap.set("#date-of-birth", { opacity: 0, y: -20, rotationX: 90, transformPerspective: 500 });
+            gsap.set("#country", { opacity: 0 });
+            // timeline
+            const tl = gsap.timeline();
+            // show hero container
+            tl.to("#hero-container", {
+                autoAlpha: 1,
+                duration: .4,
+                ease: "power3.out"
+            });
+            if (isDesktop) {
+                const titleSplit = SplitText.create("#hero-title", {
+                    type: "chars",
+                });
+                gsap.set(titleSplit.chars, { yPercent: -100 });
+                // show title
+                tl.to(titleSplit.chars, {
+                    yPercent: 0,
+                    stagger: {
+                        each: .02,
+                        from: "center",
+                    },
+                    duration: .3,
+                    ease: "power3.out",
+                }, "<0.4");
+            } else {
+                gsap.set("#hero-title", { y: -50, opacity: 0 });
+                tl.to("#hero-title", {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power3.out"
+                }, "<0.4");
             }
-        })
-        // show country
-        tl.to("#country", {
-            opacity: 1,
-            duration: 0.4,
-            ease: "power3.out"
-        }, "-=1");
+            // animate date of birth
+            tl.to("#date-of-birth", {
+                opacity: 1,
+                y: 0,
+                rotationX: 0,
+                duration: 1,
+                ease: "back.out(1.7)"
+            }, "<0.4");
+            // start counting
+            gsap.to(INTIAL_YEAR, {
+                value: 2002,
+                duration: 3,
+                ease: "power2.out",
+                onUpdate: () => {
+                    const el = document.querySelector("#date-of-birth");
+                    if (!el) return;
+                    el.textContent = Math.round(INTIAL_YEAR.value).toString()
+                }
+            })
+            // show country
+            tl.to("#country", {
+                opacity: 1,
+                duration: 0.4,
+                ease: "power3.out"
+            }, "-=1");
+        });
 
     })
 

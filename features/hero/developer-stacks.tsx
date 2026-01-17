@@ -6,8 +6,8 @@ const DeveloperStacks = () => {
     useGSAP(() => {
         // initial state
         gsap.set("#hero-image-container", { backgroundColor: "transparent" });
-        gsap.set(".developer-stack", { yPercent: 100, willChange: "transform" });
-        gsap.set("#hero-image", { yPercent: -100, opacity: 0, willChange: "transform" });
+        gsap.set(".developer-stack", { yPercent: 100 });
+        gsap.set("#hero-image", { yPercent: -100, opacity: 0 });
         // timeline
         const tl = gsap.timeline();
         // show hero image
