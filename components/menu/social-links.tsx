@@ -15,7 +15,7 @@ const SocialLinks = () => {
 
     const RENDER_SOCIAL_LINKS = SOCIAL_MEDIA_LINKS.map((i) => (
         <a key={i.label} href={i.href} className="social-link">
-            <AnimatedLabel size="30" item={{ label: i.label }} />
+            <AnimatedLabel className="text-xl" item={{ label: i.label }} />
         </a>
     ))
     return (

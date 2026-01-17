@@ -76,7 +76,6 @@ const Hero = () => {
                 ease: "power3.out"
             }, "-=1");
         });
-
     })
 
     return (
