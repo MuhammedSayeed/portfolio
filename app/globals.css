@@ -29,11 +29,11 @@ body {
 }
 
 ::selection {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--secondary);
+  color: var(--primary);
 }
 
 ::-moz-selection {
-  background-color: #000;
-  color: #fff;
+  background-color: var(--secondary);
+  color: var(--primary);
 }

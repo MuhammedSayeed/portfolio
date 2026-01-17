@@ -17,6 +17,9 @@ const navItems = [
     }
 ]
 
+const PERSONAL_EMAIL = "mhmdsayed90031@gmail.com";
+
 export {
-    navItems
+    navItems,
+    PERSONAL_EMAIL
 }
