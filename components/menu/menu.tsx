@@ -78,7 +78,7 @@ const Menu = () => {
         if (isOpen) {
             tl.current.timeScale(1).play();
         } else {
-            tl.current.timeScale(1.4).reverse();
+            tl.current.timeScale(1.6).reverse();
         }
     }, [isOpen]);
 
