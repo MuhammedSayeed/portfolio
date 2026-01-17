@@ -9,29 +9,27 @@ const DeveloperStacks = () => {
         gsap.set(".developer-stack", { yPercent: 100, willChange: "transform" });
         gsap.set("#hero-image", { yPercent: -100, opacity: 0, willChange: "transform" });
         // timeline
-        const tl = gsap.timeline({
-            delay: .3
-        });
+        const tl = gsap.timeline();
         // show hero image
         tl.to("#hero-image", {
             opacity: 1,
             yPercent: 0,
             duration: .7,
             ease: "power1.inOut"
-        }, "<0.5");
+        }, "<0.4");
         // show developer stack
         tl.to(".developer-stack", {
             yPercent: 0,
             duration: .5,
             stagger: .1,
             ease: "power1.inOut"
-        }, "<0.5");
+        }, "<0.4");
         // show hero image container background
         tl.to("#hero-image-container", {
             backgroundColor: "#F1F1F1",
             duration: .5,
             ease: "power1.inOut"
-        }, "<0.5");
+        }, "<0.4");
 
     })
     const RENDER_STACKS = STACKS.map((stack, index) => (

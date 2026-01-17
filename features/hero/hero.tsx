@@ -20,9 +20,7 @@ const Hero = () => {
         gsap.set("#date-of-birth", { opacity: 0, y: -20, rotationX: 90, transformPerspective: 500, willChange: "transform" });
         gsap.set("#country", { opacity: 0 });
         // timeline
-        const tl = gsap.timeline({
-            delay: .2
-        });
+        const tl = gsap.timeline();
         // show hero container
         tl.to("#hero-container", {
             autoAlpha: 1,
