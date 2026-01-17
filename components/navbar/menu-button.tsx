@@ -1,6 +1,5 @@
 "use client"
 import { useMenuStore } from "@/store/use-menu-store";
-
 const MenuButton = () => {
     const { isOpen, open } = useMenuStore();
 
