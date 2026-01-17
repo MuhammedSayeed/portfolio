@@ -1,6 +1,5 @@
 "use client"
 import Logo from "@/components/logo";
-import AnimatedLabel from "@/components/shared/animated-label";
 import CityTime from "@/components/menu/city-time";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
@@ -14,7 +13,6 @@ const Menu = () => {
     const container = useRef<HTMLDivElement>(null);
     const tl = useRef<gsap.core.Timeline | null>(null);
     const { isOpen } = useMenuStore();
-
 
     useGSAP(() => {
         // initial state
@@ -81,7 +79,6 @@ const Menu = () => {
             tl.current.timeScale(1.6).reverse();
         }
     }, [isOpen]);
-
 
 
     return (
