@@ -16,7 +16,7 @@ const Hero = () => {
             const { isDesktop } = context.conditions as { isDesktop: boolean };
             // initial state
             gsap.set("#hero-container", { autoAlpha: 0 });
-            gsap.set("#date-of-birth", { opacity: 0, y: -20, rotationX: 90, transformPerspective: 500 });
+            gsap.set("#date-of-birth", { opacity: 0, y: -20, rotationX: 90, transformPerspective: 500, willChange: "transform, opacity" });
             gsap.set("#country", { opacity: 0 });
             // timeline
             const tl = gsap.timeline();
@@ -42,7 +42,7 @@ const Hero = () => {
                     ease: "power3.out",
                 }, "<0.4");
             } else {
-                gsap.set("#hero-title", { y: -50, opacity: 0 });
+                gsap.set("#hero-title", { y: -50, opacity: 0, willChange: "transform, opacity" });
                 tl.to("#hero-title", {
                     y: 0,
                     opacity: 1,
@@ -58,15 +58,23 @@ const Hero = () => {
                 duration: 1,
                 ease: "back.out(1.7)"
             }, "<0.4");
+
             // start counting
-            gsap.to(INTIAL_YEAR, {
+            // Use local object to avoid polluting global constant and ensure fresh start
+            const counter = { value: INTIAL_YEAR.value };
+            const dobEl = document.querySelector("#date-of-birth");
+            let lastValue = 0;
+            gsap.to(counter, {
                 value: 2002,
                 duration: 3,
                 ease: "power2.out",
                 onUpdate: () => {
-                    const el = document.querySelector("#date-of-birth");
-                    if (!el) return;
-                    el.textContent = Math.round(INTIAL_YEAR.value).toString()
+                    if (!dobEl) return;
+                    const roundedValue = Math.round(counter.value);
+                    if (roundedValue !== lastValue) {
+                        dobEl.textContent = roundedValue.toString();
+                        lastValue = roundedValue;
+                    }
                 }
             })
             // show country
