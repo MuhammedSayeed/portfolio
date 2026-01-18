@@ -1,15 +1,13 @@
 "use client"
 import { INTIAL_YEAR } from "@/constants"
-import Country from "@/features/hero/country"
-import DateOfBirth from "@/features/hero/date-of-birth"
-import DeveloperStacks from "@/features/hero/developer-stacks"
-import HeroImage from "@/features/hero/hero-image"
-import HeroTitle from "@/features/hero/hero-title"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { SplitText } from "gsap/all"
+import { PropsWithChildren } from "react"
 
-const Hero = () => {
+
+
+const HeroAnimationProvider = ({ children }: PropsWithChildren) => {
     useGSAP(() => {
         const mm = gsap.matchMedia();
         mm.add({ isDesktop: "(min-width: 1024px)", isMobile: "(max-width: 1023px)" }, (context) => {
@@ -60,16 +58,15 @@ const Hero = () => {
             }, "<0.4");
 
             // start counting
-            const counter = { value: INTIAL_YEAR.value };
             const dobEl = document.querySelector("#date-of-birth");
             let lastValue = 0;
-            gsap.to(counter, {
+            gsap.to(INTIAL_YEAR, {
                 value: 2002,
                 duration: 3,
                 ease: "power2.out",
                 onUpdate: () => {
                     if (!dobEl) return;
-                    const roundedValue = Math.round(counter.value);
+                    const roundedValue = Math.round(INTIAL_YEAR.value);
                     if (roundedValue !== lastValue) {
                         dobEl.textContent = roundedValue.toString();
                         lastValue = roundedValue;
@@ -83,21 +80,42 @@ const Hero = () => {
                 ease: "power3.out"
             }, "-=1");
         });
+        return () => mm.revert();
     })
+    useGSAP(() => {
+        // initial state
+        gsap.set("#hero-image-container", { backgroundColor: "transparent" });
+        gsap.set(".developer-stack", { yPercent: 100 });
+        gsap.set("#hero-image", { yPercent: -100, opacity: 0 });
+        // timeline
+        const tl = gsap.timeline();
+        // show hero image
+        tl.to("#hero-image", {
+            opacity: 1,
+            yPercent: 0,
+            duration: 1.5,
+            ease: "power3.out"
+        }, "<0.4");
+        // show developer stack
+        tl.to(".developer-stack", {
+            yPercent: 0,
+            duration: .5,
+            stagger: .1,
+            ease: "power1.inOut"
+        }, "<0.4");
+        // show hero image container background
+        tl.to("#hero-image-container", {
+            backgroundColor: "#F1F1F1",
+            duration: .5,
+            ease: "power1.inOut"
+        }, "<0.4");
 
+    })
     return (
-        <div id="hero-container" className="px-6 md:px-16 w-full invisible relative">
-            <div className="relative w-fit mx-auto z-2">
-                <DateOfBirth />
-                <HeroTitle />
-                <Country />
-            </div>
-            <div id="hero-image-container" className="w-full max-w-[730px] h-[438px] absolute top-[calc(100%+80px)] lg:top-full left-1/2 -translate-x-1/2 ">
-                <DeveloperStacks />
-                <HeroImage />
-            </div>
-        </div>
+        <>
+            {children}
+        </>
     )
 }
 
-export default Hero
+export default HeroAnimationProvider
