@@ -38,6 +38,8 @@ const HeroAnimationProvider = ({ children }: PropsWithChildren) => {
                     duration: .3,
                     ease: "power3.out",
                 }, "<0.4");
+
+                return () => titleSplit.revert();
             } else {
                 gsap.set("#hero-title", { y: -50, opacity: 0, willChange: "transform, opacity" });
                 tl.to("#hero-title", {
@@ -126,6 +128,8 @@ const HeroAnimationProvider = ({ children }: PropsWithChildren) => {
                     stagger: 0.01,
                     ease: "power1.out"
                 }, "<0.4");
+
+                return () => briefSplit.revert();
             } else {
                 gsap.set("#brief", { y: -20, opacity: 0 });
                 tl.to("#brief", {
