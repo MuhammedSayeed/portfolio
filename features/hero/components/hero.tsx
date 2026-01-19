@@ -1,10 +1,12 @@
 
+import AvailableForCollaboration from "@/features/hero/components/available-for-collaboration"
+import Brief from "@/features/hero/components/brief"
 import Country from "@/features/hero/components/country"
 import DateOfBirth from "@/features/hero/components/date-of-birth"
 import DeveloperStacks from "@/features/hero/components/developer-stacks"
-import HeroFooter from "@/features/hero/components/hero-footer"
 import HeroImage from "@/features/hero/components/hero-image"
 import HeroTitle from "@/features/hero/components/hero-title"
+import RecentWork from "@/features/hero/components/recent-work"
 import HeroAnimationProvider from "@/features/hero/providers/hero-animation-provider"
 
 const Hero = () => {
@@ -23,7 +25,11 @@ const Hero = () => {
                         <DeveloperStacks />
                     </div>
                 </div>
-                <HeroFooter />
+                <div id="hero-footer" className="mt-50 lg:mt-15 space-y-12">
+                    <Brief />
+                    <RecentWork />
+                    <AvailableForCollaboration />
+                </div>
             </div>
         </HeroAnimationProvider>
 

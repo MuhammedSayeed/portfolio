@@ -1,4 +1,4 @@
-import { COUNTRY } from "@/features/constants"
+import { COUNTRY } from "@/features/hero/constants"
 
 const Country = () => {
     return (
