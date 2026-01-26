@@ -8,7 +8,7 @@ const SecondJobOffer = () => {
             </div>
             <div className="max-w-md font-spline font-light uppercase text-center text-primary">
                 <p id="second-job-offer-text" className="w-full">
-                    I got offer from <br /> <span className="text-muted">Property Shop Investment</span> <br /> as a <span>Front End Engineer</span>
+                    I got offer from <br /> <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/psinv" className="text-muted hover:underline cursor-pointer">Property Shop Investment</a> <br /> as a <span>Front End Engineer</span>
                     <span className="text-muted block">
                         (Remotely)
                     </span>

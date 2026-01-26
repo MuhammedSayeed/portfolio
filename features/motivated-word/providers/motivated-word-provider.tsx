@@ -2,8 +2,9 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { PropsWithChildren } from "react";
-import { SplitText } from "gsap/all"
+import { SplitText, ScrollTrigger } from "gsap/all"
 
+gsap.registerPlugin(SplitText, ScrollTrigger);
 const MotivatedWordProvider = ({ children }: PropsWithChildren) => {
 
     useGSAP(() => {

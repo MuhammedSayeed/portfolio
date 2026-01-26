@@ -9,7 +9,7 @@ const FirstJobOffer = () => {
             </div>
             <div className="max-w-md font-spline font-light uppercase text-center text-primary">
                 <p id="first-job-offer-text" className="w-full">
-                    I got my first job offer from <br /> <a target="_blank" href="https://www.linkedin.com/company/pixel-information-systems---pixelsoft" className="text-muted hover:underline cursor-pointer">Pixel Integrated Solutions</a> <br /> as a <span>Front End Engineer</span>
+                    I got my first job offer from <br /> <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/company/pixel-information-systems---pixelsoft" className="text-muted hover:underline cursor-pointer">Pixel Integrated Solutions</a> <br /> as a <span>Front End Engineer</span>
                 </p>
                 <span id="first-job-offer-date" className="text-muted block mt-4 leading-none">2025 August - Present</span>
                 <span id="first-job-offer-location" className="text-muted block mt-2 leading-none text-sm">[CAIRO / EGYPT]</span>

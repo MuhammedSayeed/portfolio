@@ -263,6 +263,10 @@ const AboutMeAnimationProvider = ({ children }: PropsWithChildren) => {
             duration: 2,
             ease: "power4.out",
         })
+        return () => {
+            splitedText.revert();
+            tl.revert();
+        }
     })
     // first-job-offer-separation animation
     useGSAP(() => {
@@ -353,6 +357,10 @@ const AboutMeAnimationProvider = ({ children }: PropsWithChildren) => {
             duration: 2,
             ease: "power4.out",
         })
+        return () => {
+            splitedText.revert();
+            tl.revert();
+        }
     })
     return (
         <div>
