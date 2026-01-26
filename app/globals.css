@@ -4,7 +4,7 @@
   --primary: #F7F7F7;
   --secondary: #101010;
   --accent: #F1F1F1;
-
+  --muted: #AAAAAA;
   --background: var(--primary);
   --foreground: var(--secondary);
 }
@@ -15,7 +15,7 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
-
+  --color-muted: var(--muted);
   --font-sofia: var(--font-sofia-condensed);
   --font-spline: var(--font-spline);
 }
