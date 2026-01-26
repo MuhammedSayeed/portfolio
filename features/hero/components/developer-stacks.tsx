@@ -1,4 +1,4 @@
-import { STACKS } from "@/features/constants";
+import { STACKS } from "@/features/hero/constants";
 
 const DeveloperStacks = () => {
 

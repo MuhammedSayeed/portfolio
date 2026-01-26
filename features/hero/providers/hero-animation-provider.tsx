@@ -1,12 +1,11 @@
 "use client"
-import { INTIAL_YEAR } from "@/constants"
+import { INITIAL_YEAR } from "@/constants"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { SplitText } from "gsap/all"
+import { ScrollTrigger, SplitText } from "gsap/all"
 import { PropsWithChildren } from "react"
 
-
-
+gsap.registerPlugin(ScrollTrigger, SplitText);
 const HeroAnimationProvider = ({ children }: PropsWithChildren) => {
     useGSAP(() => {
         const mm = gsap.matchMedia();
@@ -39,6 +38,8 @@ const HeroAnimationProvider = ({ children }: PropsWithChildren) => {
                     duration: .3,
                     ease: "power3.out",
                 }, "<0.4");
+
+                return () => titleSplit.revert();
             } else {
                 gsap.set("#hero-title", { y: -50, opacity: 0, willChange: "transform, opacity" });
                 tl.to("#hero-title", {
@@ -60,13 +61,13 @@ const HeroAnimationProvider = ({ children }: PropsWithChildren) => {
             // start counting
             const dobEl = document.querySelector("#date-of-birth");
             let lastValue = 0;
-            gsap.to(INTIAL_YEAR, {
+            gsap.to(INITIAL_YEAR, {
                 value: 2002,
                 duration: 3,
                 ease: "power2.out",
                 onUpdate: () => {
                     if (!dobEl) return;
-                    const roundedValue = Math.round(INTIAL_YEAR.value);
+                    const roundedValue = Math.round(INITIAL_YEAR.value);
                     if (roundedValue !== lastValue) {
                         dobEl.textContent = roundedValue.toString();
                         lastValue = roundedValue;
@@ -83,33 +84,89 @@ const HeroAnimationProvider = ({ children }: PropsWithChildren) => {
         return () => mm.revert();
     })
     useGSAP(() => {
-        // initial state
-        gsap.set("#hero-image-container", { backgroundColor: "transparent" });
-        gsap.set(".developer-stack", { yPercent: 100 });
-        gsap.set("#hero-image", { yPercent: -100, opacity: 0 });
-        // timeline
-        const tl = gsap.timeline();
-        // show hero image
-        tl.to("#hero-image", {
-            opacity: 1,
-            yPercent: 0,
-            duration: 1.5,
-            ease: "power3.out"
-        }, "<0.4");
-        // show developer stack
-        tl.to(".developer-stack", {
-            yPercent: 0,
-            duration: .5,
-            stagger: .1,
-            ease: "power1.inOut"
-        }, "<0.4");
-        // show hero image container background
-        tl.to("#hero-image-container", {
-            backgroundColor: "#F1F1F1",
-            duration: .5,
-            ease: "power1.inOut"
-        }, "<0.4");
+        const mm = gsap.matchMedia();
+        mm.add({ isDesktop: "(min-width: 1024px)", isMobile: "(max-width: 1023px)" }, (context) => {
+            const { isDesktop } = context.conditions as { isDesktop: boolean };
 
+            // initial state
+            gsap.set("#hero-image-container", { backgroundColor: "transparent" });
+            gsap.set(".developer-stack", { yPercent: 100 });
+            gsap.set("#hero-image", { yPercent: -100, opacity: 0 });
+
+            // timeline
+            const tl = gsap.timeline();
+            // show hero image
+            tl.to("#hero-image", {
+                opacity: 1,
+                yPercent: 0,
+                duration: 1.5,
+                ease: "power3.out"
+            }, "<0.4");
+            // show developer stack
+            tl.to(".developer-stack", {
+                yPercent: 0,
+                duration: .5,
+                stagger: .1,
+                ease: "power1.inOut"
+            }, "<0.4");
+            // show hero image container background
+            tl.to("#hero-image-container", {
+                backgroundColor: "#F1F1F1",
+                duration: .5,
+                ease: "power1.inOut"
+            }, "<0.4");
+
+            // animate brief
+            if (isDesktop) {
+                const briefSplit = SplitText.create("#brief", {
+                    type: "words, chars",
+                });
+                gsap.set(briefSplit.chars, { opacity: 0 });
+                tl.to(briefSplit.chars, {
+                    opacity: 1,
+                    duration: .5,
+                    stagger: 0.01,
+                    ease: "power1.out"
+                }, "<0.4");
+
+                return () => briefSplit.revert();
+            } else {
+                gsap.set("#brief", { y: -20, opacity: 0 });
+                tl.to("#brief", {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.5,
+                    ease: "power3.out"
+                }, "<0.4");
+            }
+        });
+        return () => mm.revert();
+    })
+    useGSAP(() => {
+        // show recent work
+        gsap.to("#recent-work", {
+            opacity: 1,
+            duration: .5,
+            ease: "power1.inOut",
+            scrollTrigger: {
+                trigger: "#hero-footer",
+                start: "top 80%",
+                end: "top 60%",
+                toggleActions: "play none none reverse"
+            }
+        })
+        // show available for collaboration
+        gsap.to("#available-for-collaboration", {
+            opacity: 1,
+            duration: .5,
+            ease: "power1.inOut",
+            scrollTrigger: {
+                trigger: "#hero-footer",
+                start: "top 70%",
+                end: "top 60%",
+                toggleActions: "play none none reverse"
+            }
+        })
     })
     return (
         <>

@@ -1,4 +1,4 @@
-import { DATE_OF_BIRTH } from "@/features/constants"
+import { DATE_OF_BIRTH } from "@/features/hero/constants"
 
 
 const DateOfBirth = () => {

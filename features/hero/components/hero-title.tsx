@@ -1,4 +1,4 @@
-import { HERO_TITLE } from "@/features/constants"
+import { HERO_TITLE } from "@/features/hero/constants"
 
 const HeroTitle = () => {
     return (
